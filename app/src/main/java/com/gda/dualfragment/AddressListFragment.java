@@ -1,17 +1,21 @@
-import android.app.ListFragment;
+package com.gda.dualfragment;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.gda.dualfragment.R;
+import androidx.fragment.app.ListFragment;
 
 import java.util.ArrayList;
 
 public class AddressListFragment extends ListFragment {
     private ArrayList<NameAndAdress> mNameAndAdresses;
+    private ActivityComs mActivityComs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,9 +26,26 @@ public class AddressListFragment extends ListFragment {
         setListAdapter(adapter);
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivityComs = (ActivityComs) activity;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivityComs = null;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        mActivityComs.onListItemSelected(position);
+    }
+
     private class AddressListAdapter extends ArrayAdapter {
-        public AddressListAdapter (ArrayList<NameAndAdress>) {
-            super(getActivity(), R.layout.list_item, mNameAndAdresses);
+        public AddressListAdapter (ArrayList<NameAndAdress> nameAndAdressArrayList) {
+            super(getActivity(), R.layout.list_item, nameAndAdressArrayList);
         }
 
         @Override

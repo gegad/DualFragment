@@ -1,3 +1,5 @@
+package com.gda.dualfragment;
+
 import java.io.Serializable;
 
 public class NameAndAdress implements Serializable {

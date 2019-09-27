@@ -1,3 +1,5 @@
+package com.gda.dualfragment;
+
 import java.util.ArrayList;
 
 public class AddressBook {

@@ -3,7 +3,7 @@
     <item
         name="activity_dualfragment"
         type="layout">
+        @layout/activity_main
     </item>
-
 
 </resources>
